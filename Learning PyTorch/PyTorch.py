@@ -7,21 +7,22 @@ inputLayer, hiddenLayer, outputLayer, batchSize = 10, 5, 1, 10
 x = torch.randn(batchSize, inputLayer)
 # Create a tensor with 10 values
 y = torch.tensor([[1.0], [0.0], [0.0], [1.0], [1.0], [1.0], [0.0], [0.0], [1.0], [1.0]])
-# Create squential model
+# Create squential model. Linear layer from input to hidden, 
 model = nn.Sequential(nn.Linear(inputLayer, hiddenLayer), nn.ReLU(), nn.Linear(hiddenLayer, outputLayer), nn.Sigmoid())
-# Create loss function
+# Create loss function, this measures the difference between the target value and the predicted value
 criterion = torch.nn.MSELoss()
+# Create an optimizer utilizing the stochastic gradient descent algorithm
 optimizer = torch.optim.SGD(model.parameters(), lr = 0.01)
 # Run model 100 times
 for time in range (100):
     # Perform first prediction
     yPrediction = model(x)
-    # Calculate loss and print to terminal
+    # Calculates loss by comparing difference between the predicition and the target value
     loss = criterion(yPrediction, y)
     print('time: ', time,' loss: ', loss.item())
-    # Zero gradient, update weights in optimizer
+    # Zeros gradient
     optimizer.zero_grad()
-    # Perform backward pass
+    # Perform backward pass through model
     loss.backward()
-    # Update parameters run again
+    # Update parameters using gradients calculated in last step
     optimizer.step()
