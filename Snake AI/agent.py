@@ -7,7 +7,7 @@ from model import LinearQNet, QTrainer
 from helper import plot
 
 MAX_MEMORY = 100_000
-BATCH_SIZE = 1000
+BATCH_SIZE = 100
 LR = 0.001
 
 class Agent:
@@ -16,7 +16,7 @@ class Agent:
         self.epsilon = 0
         self.gamma = 0.9
         self.memory = deque(maxlen=MAX_MEMORY)
-        self.model = LinearQNet(11,1024,3)
+        self.model = LinearQNet(11,256,3)
         self.trainer = QTrainer(self.model, lr=LR, gamma=self.gamma)
         
             
@@ -62,7 +62,7 @@ class Agent:
         self.trainer.trainStep(state, action, reward, nextState, gameOver)
     
     def getAction(self, state):
-        self.epsilon = 80 - self.numGames
+        self.epsilon = 50 - self.numGames
         finalMove = [0,0,0]
 
         if random.randint(0,200) < self.epsilon:
@@ -99,7 +99,7 @@ def train():
                 agent.model.save()
             print('Game', agent.numGames, 'Score', score, 'Record', record)
             plotScore.append(score)
-            totalScore =+ score
+            totalScore += score
             meanScore = totalScore / agent.numGames
             plotMeanScores.append(meanScore)
             plot(plotScore, plotMeanScores)
