@@ -7,7 +7,7 @@ import torch.nn.init as init
 dtype = torch.FloatTensor
 inputSize, hiddenSize, outputSize = 7, 6, 1
 epochs = 300
-sequenceLength = 35
+sequenceLength = 50
 lr = .1
 dataTimeSteps = np.linspace(2, 10, sequenceLength + 1)
 data = np.sin(dataTimeSteps)
