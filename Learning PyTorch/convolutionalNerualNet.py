@@ -9,3 +9,13 @@ class simpleCNN(torch.nn.Module):
         self.pool = torch.nn.MaxPool2d(kernel_size= 2, stride= 2, padding= 0)
         self.fc1 = torch.nn.Linear(4608, 64)
         self.fc2 = torch.nn.Linear(64,10)
+
+    def forward(self, x):
+        x = F.relu(self.conv1(x))
+        x = self.pool(x)
+        x = x.view(-1, 4608)
+        x = F.relu(self.fc1(x))
+        x = self.fc2(x)
+        return x
+    
+    
