@@ -11,7 +11,7 @@ optimizer = torch.optim.Adam(model.parameters(), lr = .05)
 for time in range(1000):
     prediction = model(x)
     loss = criterion(prediction, y)
-    print('Time: ', time, ' x: ', x, ' y: ', y, 'prediction: ', prediction.item(), ' loss: ', loss.item())
+    print('Time: ', time, ' x: ', x, ' y: ', y, 'prediction: ', prediction, ' loss: ', loss.item())
     optimizer.zero_grad()
     loss.backward()
     optimizer.step()

@@ -7,3 +7,6 @@ This program takes a sin wave and attempts to recreate it using a recurrent neur
 
 ## LinearRegression.py and LinearRegressionModel.py
 Both WIP
+
+## firstHandwrittenNN.py
+This file generates a random number and attempts to guess it using a recurrent neural network
