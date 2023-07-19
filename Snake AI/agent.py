@@ -7,8 +7,8 @@ from model import LinearQNet, QTrainer
 from helper import plot
 
 MAX_MEMORY = 100_000
-BATCH_SIZE = 100
-LR = 0.001
+BATCH_SIZE = 1000
+LR = 0.0001
 
 class Agent:
     def __init__(self):
@@ -16,7 +16,7 @@ class Agent:
         self.epsilon = 0
         self.gamma = 0.9
         self.memory = deque(maxlen=MAX_MEMORY)
-        self.model = LinearQNet(11,256,3)
+        self.model = LinearQNet(11,512,3)
         self.trainer = QTrainer(self.model, lr=LR, gamma=self.gamma)
         
             
